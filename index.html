@@ -3,239 +3,488 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Themuiz | Data Random</title>
+    <title>Themuiz | Data Random (เวอร์ชันน่ารัก)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- เพิ่ม Font Awesome สำหรับไอคอน -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- เพิ่มฟอนต์น่ารักๆ -->
-    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Itim&family=Charmonman:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ธีมสีพาสเทลน่ารัก */
-        :root {
-            --primary: #A78BFA; /* สีม่วงอ่อน */
-            --secondary: #F9A8D4; /* สีชมพู */
-            --accent: #67E8F9; /* สีฟ้าอ่อน */
-            --background: #F5F3FF; /* สีพื้นหลัง */
-            --card: #FFFFFF; /* สีการ์ด */
-            --text: #4B5563; /* สีข้อความ */
+        /* กำหนดให้ HTML และ Body สูงเต็มหน้าจอและซ่อน Scrollbar */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* ซ่อน Scrollbar ของหน้าเว็บทั้งหมด */
+            box-sizing: border-box;
         }
-
         body {
-            font-family: 'Itim', cursive; /* ฟอนต์น่ารัก */
-            background-color: var(--background);
-            color: var(--text);
-            background-image: radial-gradient(var(--primary) 1px, transparent 1px);
-            background-size: 20px 20px;
+            font-family: 'Prompt', sans-serif; /* ใช้ฟอนต์ Prompt เป็นหลัก */
+            background: linear-gradient(135deg, #FFD1DC 0%, #B0E0E6 100%); /* พื้นหลังไล่สีพาสเทลชมพู-ฟ้า */
+            color: #4B0082; /* สีข้อความม่วงเข้ม */
+            display: flex;
+            flex-direction: column; /* จัดเรียงองค์ประกอบในแนวตั้ง */
+            justify-content: space-between; /* กระจายพื้นที่เพื่อให้ Header และ Footer อยู่ด้านบน/ล่างสุด */
+            align-items: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+            height: 100vh; /* กำหนดให้ Body สูงเท่า Viewport พอดี */
+            padding: 0.5rem; /* เพิ่ม Padding รอบๆ */
         }
-
         .header-title {
-            font-family: 'Charmonman', cursive; /* ฟอนต์หัวข้อน่ารัก */
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            display: inline-block;
-        }
-
-        .header-title::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 3px;
-        }
-
-        .container {
-            gap: 1.2rem;
-            padding: 1rem;
-        }
-
-        .card {
-            background-color: var(--card);
-            border-radius: 1rem;
-            padding: 1.2rem;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-            border: 2px solid rgba(167, 139, 250, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
+            font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับชื่อเว็บ */
+            font-size: 2.5rem; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            font-weight: 700; /* ตัวหนา */
+            color: #FF69B4; /* สีชมพูสดใส */
+            margin-bottom: 1.5rem; /* ระยะห่างจากด้านล่าง */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ดูมีมิติ */
+            text-align: center; /* จัดให้อยู่กึ่งกลาง */
+            line-height: 1.2;
+            white-space: nowrap;
+            max-width: 100%;
             overflow: hidden;
+            text-overflow: ellipsis;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
+        .container {
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            max-width: 900px; /* กำหนดความกว้างสูงสุดสำหรับหน้าจอใหญ่ */
+            flex-grow: 1; /* ให้ Container ขยายเต็มพื้นที่ที่เหลืออยู่ระหว่าง Header และ Footer (ปุ่มบันทึก) */
+            display: grid;
+            gap: 1.5rem; /* ระยะห่างระหว่าง Card */
+            /* Responsive grid layout */
+            grid-template-columns: 1fr; /* คอลัมน์เดียวสำหรับหน้าจอเล็ก */
+            align-items: center; /* จัด Card ให้อยู่ตรงกลางแนวตั้งภายใน Grid */
+            justify-content: center; /* จัด Card ให้อยู่ตรงกลางแนวนอนภายใน Grid */
+            overflow-y: auto; /* อนุญาตให้ Scroll ภายใน Container ถ้าเนื้อหาเกิน */
+            padding: 1rem; /* Padding ภายใน Container */
         }
-
-        .card h2 {
-            font-family: 'Mali', cursive;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+        @media (min-width: 768px) { /* สำหรับหน้าจอขนาดกลางขึ้นไป */
+            .container {
+                grid-template-columns: repeat(3, 1fr); /* สามคอลัมน์ */
+                overflow-y: hidden; /* ซ่อน Scrollbar เมื่อมี 3 คอลัมน์ */
+            }
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.8); /* สีขาวโปร่งแสง */
+            border-radius: 1.5rem; /* ขอบโค้งมนมากขึ้น */
+            padding: 1.5rem; /* Padding ภายใน Card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* เงาที่ชัดเจนขึ้น */
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            justify-content: space-between; /* กระจายพื้นที่ให้เท่ากัน */
+            text-align: center;
+            flex-grow: 1;
+            min-height: 0;
+            border: 2px solid #FFC0CB; /* ขอบสีชมพูอ่อน */
+            transition: transform 0.3s ease-in-out; /* เพิ่ม Transition เมื่อ hover */
         }
-
-        .result-display {
-            background-color: rgba(167, 139, 250, 0.1);
-            color: var(--text);
-            border: 1px dashed var(--primary);
-            font-family: 'Itim', cursive;
-            font-size: 1.1rem;
-        }
-
-        .btn {
-            font-family: 'Itim', cursive;
-            border-radius: 0.7rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary);
-        }
-
-        .btn-save {
-            background-color: var(--accent);
-            color: #333;
-            font-weight: bold;
-            padding: 0.5rem 1.5rem;
-            border-radius: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .btn-save:hover {
-            transform: scale(1.05);
-        }
-
-        .footer-credit {
-            font-family: 'Charmonman', cursive;
-            color: var(--primary);
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-        }
-
-        .message-box {
-            background-color: var(--primary);
-            border-radius: 1rem;
-            padding: 0.6rem 1.2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            font-family: 'Itim', cursive;
-        }
-
-        /* เพิ่มการตกแต่งไอคอน */
-        .icon {
-            font-size: 1.2rem;
-            margin-right: 0.3rem;
-        }
-
-        /* เพิ่มลูกเล่นให้ปุ่ม */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .btn:hover {
-            animation: bounce 0.5s;
-        }
-
-        /* เพิ่มลูกเล่นให้การ์ด */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
         .card:hover {
-            animation: float 3s ease-in-out infinite;
+            transform: translateY(-5px); /* ยก Card ขึ้นเล็กน้อยเมื่อ hover */
+        }
+        .card h2 {
+            font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับหัวข้อ Card */
+            font-size: 1.8rem; /* ขนาดหัวข้อ */
+            font-weight: 700;
+            color: #8A2BE2; /* สีม่วงน้ำเงิน */
+            margin-bottom: 1rem;
+            display: flex; /* จัดให้ไอคอนและข้อความอยู่บรรทัดเดียวกัน */
+            align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+            gap: 0.5rem; /* ระยะห่างระหว่างไอคอนกับข้อความ */
+        }
+        .card h2 i {
+            color: #FF69B4; /* สีไอคอนชมพูสดใส */
+        }
+        .result-display {
+            background-color: #F0F8FF; /* สีฟ้าอ่อนมากสำหรับพื้นที่แสดงผล */
+            color: #4B0082; /* สีข้อความม่วงเข้ม */
+            padding: 0.8rem 1.2rem; /* Padding ของ display area */
+            border-radius: 1rem; /* ขอบโค้งมน */
+            margin-bottom: 1rem;
+            width: 100%;
+            font-size: 1.2rem; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            font-weight: 600;
+            word-break: break-all; /* ตัดคำยาวๆ */
+            border: 1px solid #B0E0E6; /* ขอบสีฟ้าอ่อน */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* เงาด้านใน */
+        }
+        .button-group {
+            display: flex;
+            gap: 0.8rem; /* ระยะห่างระหว่างปุ่ม */
+            width: 100%;
+            justify-content: center;
+        }
+        .btn {
+            padding: 0.7rem 1.5rem; /* Padding ของปุ่ม */
+            border-radius: 1rem; /* ขอบโค้งมน */
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* เพิ่ม Transition */
+            flex: 1; /* ทำให้ปุ่มมีขนาดเท่ากัน */
+            font-size: 1rem; /* ขนาดตัวอักษรของปุ่ม */
+            border: none; /* ไม่มีขอบ */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้ปุ่ม */
+        }
+        .btn-primary {
+            background-color: #FFC0CB; /* สีชมพูอ่อน */
+            color: #8A2BE2; /* สีม่วงน้ำเงิน */
+        }
+        .btn-primary:hover {
+            background-color: #FF69B4; /* สีชมพูสดใสเมื่อ hover */
+            color: white;
+            transform: translateY(-2px); /* ยกปุ่มขึ้นเล็กน้อย */
+        }
+        .btn-secondary {
+            background-color: #ADD8E6; /* สีฟ้าอ่อน */
+            color: #8A2BE2; /* สีม่วงน้ำเงิน */
+        }
+        .btn-secondary:hover {
+            background-color: #87CEEB; /* สีฟ้าสดใสเมื่อ hover */
+            color: white;
+            transform: translateY(-2px);
+        }
+        .btn-save {
+            background-color: #98FB98; /* สีเขียวมิ้นท์สำหรับปุ่มบันทึก */
+            color: #4B0082; /* สีม่วงเข้ม */
+            padding: 0.8rem 2rem; /* ขนาดปุ่มบันทึก */
+            font-size: 1.1rem; /* ขนาดตัวอักษร */
+            margin-top: 1.5rem; /* ระยะห่างจากด้านบน */
+            width: auto; /* ให้ปุ่มปรับขนาดตามเนื้อหา */
+            border-radius: 1.5rem; /* ขอบโค้งมนมากขึ้น */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-save:hover {
+            background-color: #3CB371; /* สีเขียวเข้มขึ้นเมื่อ hover */
+            color: white;
+            transform: translateY(-2px);
+        }
+        .footer-credit {
+            font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับเครดิต */
+            font-size: 0.9rem; /* ขนาดตัวอักษรสำหรับเครดิต */
+            color: #6A5ACD; /* สีม่วงอ่อน */
+            margin-top: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .message-box {
+            position: fixed;
+            bottom: 1rem; /* ปรับให้อยู่ด้านล่างสุด */
+            left: 50%;
+            transform: translateX(-50%);
+            /* สีเริ่มต้นสำหรับข้อความสำเร็จ */
+            background-color: #98FB98; /* Green for success */
+            color: #4B0082;
+            padding: 0.8rem 1.5rem; /* Padding */
+            border-radius: 1.5rem; /* ขอบโค้งมน */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1000;
+            white-space: nowrap; /* ป้องกันข้อความแจ้งเตือนขึ้นบรรทัดใหม่ */
+            font-size: 1rem; /* ขนาดตัวอักษร */
+            border: 1px solid #3CB371; /* ขอบสีเขียว */
+        }
+        .message-box.show {
+            opacity: 1;
+        }
+        /* เพิ่มคลาสสำหรับข้อความแจ้งเตือนสีแดง */
+        .message-box.error {
+            background-color: #FFB6C1; /* สีชมพูอ่อนสำหรับ error */
+            color: #DC143C; /* สีแดงเข้ม */
+            border: 1px solid #DC143C; /* ขอบสีแดง */
         }
     </style>
 </head>
 <body>
-    <div class="header-title">
-        <i class="fas fa-magic icon"></i> Themuiz | Data Random
-    </div>
-
+    <div class="header-title">Themuiz | Data Random</div>
     <div class="container">
         <div class="card">
-            <h2><i class="fas fa-user icon"></i> สุ่มยูสเซอร์เนม</h2>
+            <h2><i class="fas fa-user-circle"></i> สุ่มยูสเซอร์เนม</h2>
             <div id="usernameDisplay" class="result-display">กด "สุ่ม" เพื่อสร้าง</div>
             <div class="button-group">
-                <button id="randomUsernameBtn" class="btn btn-primary">
-                    <i class="fas fa-random icon"></i> สุ่ม
-                </button>
-                <button id="copyUsernameBtn" class="btn btn-secondary">
-                    <i class="far fa-copy icon"></i> คัดลอก
-                </button>
+                <button id="randomUsernameBtn" class="btn btn-primary">สุ่ม</button>
+                <button id="copyUsernameBtn" class="btn btn-secondary">คัดลอก</button>
             </div>
         </div>
-
         <div class="card">
-            <h2><i class="fas fa-phone icon"></i> สุ่มเบอร์โทร</h2>
+            <h2><i class="fas fa-phone"></i> สุ่มเบอร์โทร</h2>
             <div id="phoneDisplay" class="result-display">กด "สุ่ม" เพื่อสร้าง</div>
             <div class="button-group">
-                <button id="randomPhoneBtn" class="btn btn-primary">
-                    <i class="fas fa-random icon"></i> สุ่ม
-                </button>
-                <button id="copyPhoneBtn" class="btn btn-secondary">
-                    <i class="far fa-copy icon"></i> คัดลอก
-                </button>
+                <button id="randomPhoneBtn" class="btn btn-primary">สุ่ม</button>
+                <button id="copyPhoneBtn" class="btn btn-secondary">คัดลอก</button>
             </div>
         </div>
-
         <div class="card">
-            <h2><i class="fas fa-id-card icon"></i> สุ่มชื่อ-นามสกุล</h2>
+            <h2><i class="fas fa-address-card"></i> สุ่มชื่อ-นามสกุล</h2>
             <div id="nameSurnameDisplay" class="result-display">กด "สุ่ม" เพื่อสร้าง</div>
             <div class="button-group">
-                <button id="randomNameSurnameBtn" class="btn btn-primary">
-                    <i class="fas fa-random icon"></i> สุ่ม
-                </button>
-                <button id="copyNameSurnameBtn" class="btn btn-secondary">
-                    <i class="far fa-copy icon"></i> คัดลอก
-                </button>
+                <button id="randomNameSurnameBtn" class="btn btn-primary">สุ่ม</button>
+                <button id="copyNameSurnameBtn" class="btn btn-secondary">คัดลอก</button>
             </div>
         </div>
     </div>
-
     <div class="w-full flex justify-center">
-        <button id="saveFileBtn" class="btn btn-save">
-            <i class="fas fa-save icon"></i> บันทึกรายการ
-        </button>
+        <button id="saveFileBtn" class="btn btn-save">บันทึกรายการ</button>
     </div>
-
-    <div class="footer-credit">
-        <i class="fas fa-heart icon" style="color: #F9A8D4;"></i> Themuiz × มะลิ
-    </div>
-
+    <div class="footer-credit">Themuiz × มะลิ</div>
     <div id="messageBox" class="message-box"></div>
 
-    <!-- ส่วน JavaScript เดิมไม่เปลี่ยนแปลง -->
     <script>
-        // ... ส่วน JavaScript เดิมทั้งหมด ...
+        // ฟังก์ชันสำหรับแสดงข้อความแจ้งเตือน
+        function showMessage(message, type = 'success') { // เพิ่ม type parameter
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            messageBox.classList.remove('success', 'error'); // ลบคลาสเก่าออกก่อน
+            messageBox.classList.add(type); // เพิ่มคลาสตาม type
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show', type); // ลบคลาส show และ type ออก
+            }, 2000); // ซ่อนหลังจาก 2 วินาที
+        }
+
+        // ฟังก์ชันสำหรับคัดลอกข้อความไปที่คลิปบอร์ด
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showMessage('คัดลอกแล้วค่ะ!');
+            } catch (err) {
+                console.error('ไม่สามารถคัดลอกได้:', err);
+                showMessage('คัดลอกไม่สำเร็จค่ะ', 'error'); // แจ้งเตือน error
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // --- ส่วนยูสเซอร์เนม ---
+        const usernameWords = [
+            "love", "hope", "mind", "soul", "star", "moon", "fire", "wind", "rain", "tree",
+            "bird", "fish", "gold", "dark", "light", "true", "bold", "calm", "deep", "free",
+            "flow", "glow", "high", "kind", "leaf", "mist", "path", "peak", "rock", "root",
+            "seed", "sky", "soft", "song", "tide", "vast", "wave", "wild", "wish", "wood",
+            "dream", "spark", "bliss", "charm", "echo", "fairy", "grace", "heart", "ivy", "jewel",
+            "kismet", "luna", "magic", "nova", "opal", "peace", "quest", "rose", "serene", "twilight"
+        ];
+        const generatedUsernames = new Set(); // เก็บยูสเซอร์เนมที่สร้างไปแล้วเพื่อไม่ให้ซ้ำ
+
+        function generateUsername() {
+            let newUsername;
+            let attempts = 0;
+            const maxAttempts = 100; // จำกัดจำนวนครั้งที่พยายามสุ่มเพื่อป้องกันลูปไม่รู้จบ
+            do {
+                const randomWord = usernameWords[Math.floor(Math.random() * usernameWords.length)];
+                // สุ่มเลข 3 หลักแยกกันทีละตัว
+                const digit1 = Math.floor(Math.random() * 10); // สุ่มหลักที่ 1 (0-9)
+                const digit2 = Math.floor(Math.random() * 10); // สุ่มหลักที่ 2 (0-9)
+                const digit3 = Math.floor(Math.random() * 10); // สุ่มหลักที่ 3 (0-9)
+                const randomNumber = `${digit1}${digit2}${digit3}`; // นำมารวมกันเป็น string
+                newUsername = `${randomWord}z${randomNumber}`;
+                attempts++;
+                if (attempts > maxAttempts) {
+                    console.warn("ไม่สามารถสร้างยูสเซอร์เนมที่ไม่ซ้ำได้หลังจากหลายครั้งที่พยายาม");
+                    break;
+                }
+            } while (generatedUsernames.has(newUsername));
+            generatedUsernames.add(newUsername);
+            return newUsername;
+        }
+
+        document.getElementById('randomUsernameBtn').addEventListener('click', () => {
+            document.getElementById('usernameDisplay').textContent = generateUsername();
+        });
+
+        document.getElementById('copyUsernameBtn').addEventListener('click', () => {
+            copyToClipboard(document.getElementById('usernameDisplay').textContent);
+        });
+
+        // --- ส่วนเบอร์โทร ---
+        const generatedPhoneNumbers = new Set(); // เก็บเบอร์ที่สร้างไปแล้วเพื่อไม่ให้ซ้ำ
+
+        function generatePhoneNumber() {
+            let newPhoneNumber;
+            let attempts = 0;
+            const maxAttempts = 100;
+            do {
+                const prefix = Math.random() < 0.5 ? '08' : '09'; // สุ่มขึ้นต้น 08 หรือ 09
+                let digits = '';
+                for (let i = 0; i < 8; i++) {
+                    digits += Math.floor(Math.random() * 10); // สุ่มเลข 8 หลัก
+                }
+                newPhoneNumber = `${prefix}${digits}`;
+                attempts++;
+                if (attempts > maxAttempts) {
+                    console.warn("ไม่สามารถสร้างเบอร์โทรศัพท์ที่ไม่ซ้ำได้หลังจากหลายครั้งที่พยายาม");
+                    break;
+                }
+            } while (generatedPhoneNumbers.has(newPhoneNumber));
+            generatedPhoneNumbers.add(newPhoneNumber);
+            return newPhoneNumber;
+        }
+
+        document.getElementById('randomPhoneBtn').addEventListener('click', () => {
+            document.getElementById('phoneDisplay').textContent = generatePhoneNumber();
+        });
+
+        document.getElementById('copyPhoneBtn').addEventListener('click', () => {
+            copyToClipboard(document.getElementById('phoneDisplay').textContent);
+        });
+
+        // --- ส่วนชื่อ-นามสกุล ---
+        // เพิ่มชื่อภาษาไทยแนวสันสกฤตให้เยอะขึ้น
+        const thaiSanskritNames = [
+            "อรุณ", "เมษา", "นารา", "ปัญญา", "วิชา", "สุริยา", "จันทรา", "อัปสร", "มณี", "กมล",
+            "เพชร", "รุ่ง", "แก้ว", "ทิพย์", "บุษบา", "มาลี", "วารี", "ศิริ", "สุข", "สมบัติ",
+            "รัตนา", "อัญชลี", "กานต์", "พิชญา", "ธนากร", "ปรีชา", "วาสนา", "อารยา", "จิราพร", "ชนกชนม์",
+            "กัลยา", "กัญญา", "กิตติ", "เกศรา", "ขวัญฤดี", "จารุ", "จิรวัฒน์", "ชนินทร์", "ชลธิชา", "ชุติมา",
+            "ณัฐพล", "ดารุณี", "ทิพวรรณ", "ธนวัฒน์", "ธิดารัตน์", "นพรัตน์", "นันทนา", "นฤมล", "บุญญานุช", "บุษกร",
+            "ปนัดดา", "ปรียา", "พงษ์ศักดิ์", "พัชรี", "พิมพา", "ไพโรจน์", "ภัทรวดี", "ภาณุพงศ์", "มยุรี", "มนตรี",
+            "ยุพิน", "รุ่งทิวา", "ลลิตา", "วรัญญา", "วราภรณ์", "วิภาดา", "ศศิธร", "สมชาย", "สุนิสา", "สุพรรณี",
+            "อภิชาติ", "อริยา", "อัจฉรา", "อำไพ", "เอกชัย", "กวิน", "กัญญาณัฐ", "จิรภัทร", "ชลิตา", "ญาณิศา",
+            "ฐิติมา", "ธนพร", "นภัสสร", "ปภาดา", "พัชรินทร์", "ภัทรพล", "รพีพร", "วรัญญา", "ศุภชัย", "สุธาสินี",
+            "อนันต์", "อภิญญา", "อัญชลี", "กฤติน", "กานต์ชนก", "จิรดา", "ชนัญชิดา", "ญาดา", "ฐิติพงศ์", "ธนวินท์",
+            "นันทิยา", "ปณิธาน", "พัชราภรณ์", "ภัทรพงศ์", "รุ่งนภา", "วรินทร", "ศุภลักษณ์", "สุภาภรณ์", "อเนก", "อารีรัตน์",
+            "กฤตภาส", "กานต์ธีรา", "จิรพัฒน์", "ชนิตา", "ญาณิน", "ฐิติรัตน์", "ธนัช", "นันทพร", "ปภาวิน", "พัชรพล",
+            "ภัทรพล", "รุ่งโรจน์", "วรินทร", "ศุภกร", "สุภาวดี", "อเนชา", "อารยา", "กฤตยา", "กานต์พิชชา", "จิรภา",
+            "ชนิศา", "ญาณิศา", "ฐิติมา", "ธนัชญา", "นันทวัน", "ปภาวดี", "พัชราภา", "ภัทรวดี", "รุ่งเรือง", "วรินทร์",
+            "ศุภรัตน์", "สุภัทรา", "อนงค์นาถ", "อารีย์", "กฤติยา", "กานต์พิชญ์", "จิรวัฒน์", "ชนิษฐา", "ญาณิศา", "ฐิติรัตน์",
+            "ธนัชพร", "นันทิพร", "ปภาวรินทร์", "พัชราพร", "ภัทรินทร์", "รุ่งอรุณ", "วรินทร์ทิพย์", "ศุภวรรณ", "สุภาภรณ์", "อนงค์นาถ",
+            "อารีรัตน์", "กฤติยา", "กานต์พิชญ์", "จิรวัฒน์", "ชนิษฐา", "ญาณิศา", "ฐิติรัตน์", "ธนัชพร", "นันทิพร", "ปภาวรินทร์",
+            "พัชราพร", "ภัทรินทร์", "รุ่งอรุณ", "วรินทร์ทิพย์", "ศุภวรรณ", "สุภาภรณ์", "อนงค์นาถ",
+            "กฤษณา", "กัญญาภัค", "จิรภัทร", "ชนิสรา", "ญาณิกา", "ฐิตินันท์", "ธนัชภรณ์", "นันทิมา", "ปภาวดี", "พัชราภา",
+            "ภัทรวดี", "รุ่งเรือง", "วรินทร์", "ศุภรัตน์", "สุภัทรา", "อนงค์นาถ", "อารีย์", "กฤติยา", "กานต์พิชญ์", "จิรวัฒน์",
+            "ชนิษฐา", "ญาณิศา", "ฐิติรัตน์", "ธนัชพร", "นันทิพร", "ปภาวรินทร์", "พัชราพร", "ภัทรินทร์", "รุ่งอรุณ", "วรินทร์ทิพย์",
+            "ศุภวรรณ", "สุภาภรณ์", "อนงค์นาถ", "อารีรัตน์", "กฤติยา", "กานต์พิชญ์", "จิรวัฒน์", "ชนิษฐา", "ญาณิศา", "ฐิติรัตน์",
+            "ธนัชพร", "นันทิพร", "ปภาวรินทร์", "พัชราพร", "ภัทรินทร์", "รุ่งอรุณ", "วรินทร์ทิพย์", "ศุภวรรณ", "สุภาภรณ์", "อนงค์นาถ"
+        ];
+        // คำสำหรับสร้างนามสกุล (แบ่งตามพยางค์)
+        const thaiSurnameWords1Syllable = [
+            "สุข", "ดี", "ศรี", "บุญ", "ทอง", "แก้ว", "เพชร", "แสง", "ฟ้า", "ดิน", "น้ำ", "ใจ",
+            "รัก", "รุ่ง", "งาม", "มั่น", "คง", "ยิ่ง", "ใหญ่", "พงษ์", "ธน", "ชัย", "พร", "เดช",
+            "โชค", "ลาภ", "ยศ", "ศักดิ์", "ฤทธิ์", "สิทธิ์", "ธรรม", "คุณ", "มง"
+        ];
+        const thaiSurnameWords2Syllables = [
+            "เจริญ", "มงคล", "สวัสดิ์", "ศิลป์", "มั่งคั่ง", "ร่ำรวย", "ผาสุก", "วิไล", "ไพศาล", "อุดม",
+            "วัฒนา", "พิทักษ์", "ประเสริฐ", "สมบูรณ์", "บารมี", "เมตตา", "ปรีดา", "พูนสุข", "โชคดี",
+            "สุวรรณ", "พิพัฒน์", "รุ่งเรือง", "ธนากร", "ศิริชัย", "สุขสันต์", "บุญฤทธิ์", "ทิพย์รัตน์",
+            "ปัญญา", "วิชา", "สมบัติ", "รัตนา", "อัญชลี", "กานต์", "พิชญา", "วาสนา", "อารยา"
+        ];
+        const thaiSurnameWords3Syllables = [
+            "เกียรติยศ", "เจริญสุข", "ทิพย์รัตน์", "มหาศาล", "อุดมสุข", "ประภัสสร", "สิริโชค", "ธนทรัพย์",
+            "เจริญพร", "สิริวัฒน์", "มงคลชัย", "โชคอนันต์"
+        ];
+        const thaiSurnameWords4Syllables = [
+            "รัตนากร", "บุญญานุภาพ"
+        ];
+
+        // รวมคำทั้งหมดสำหรับนามสกุล (ใช้สำหรับสุ่มคำ)
+        const allThaiSurnameWords = [
+            ...thaiSurnameWords1Syllable,
+            ...thaiSurnameWords2Syllables,
+            ...thaiSurnameWords3Syllables,
+            ...thaiSurnameWords4Syllables
+        ];
+
+        const generatedSurnames = new Set(); // เก็บสกุลที่สร้างไปแล้วเพื่อไม่ให้ซ้ำ
+
+        // ฟังก์ชันช่วยในการสุ่มเลือก Element จาก Array
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // ฟังก์ชันสำหรับนับพยางค์ของคำ (อ้างอิงจากลิสต์ที่เรากำหนด)
+        function getSyllableCount(word) {
+            if (thaiSurnameWords1Syllable.includes(word)) return 1;
+            if (thaiSurnameWords2Syllables.includes(word)) return 2;
+            if (thaiSurnameWords3Syllables.includes(word)) return 3;
+            if (thaiSurnameWords4Syllables.includes(word)) return 4;
+            return 1;
+        }
+
+        function generateThaiNameSurname() {
+            const randomName = getRandomElement(thaiSanskritNames);
+            let newSurname = '';
+            let currentSyllables = 0;
+            let attempts = 0;
+            const maxAttempts = 200;
+            do {
+                newSurname = '';
+                currentSyllables = 0;
+                const targetTotalSyllables = Math.floor(Math.random() * 3) + 2; // 2, 3, หรือ 4 พยางค์
+                let parts = [];
+                let innerLoopAttempts = 0;
+                while (currentSyllables < targetTotalSyllables && innerLoopAttempts < 20) {
+                    const remainingSyllables = targetTotalSyllables - currentSyllables;
+                    const possibleWords = allThaiSurnameWords.filter(word => {
+                        const wordSyllables = getSyllableCount(word);
+                        return wordSyllables <= remainingSyllables;
+                    });
+                    if (possibleWords.length === 0) {
+                        break;
+                    }
+                    const selectedWord = getRandomElement(possibleWords);
+                    parts.push(selectedWord);
+                    currentSyllables += getSyllableCount(selectedWord);
+                    innerLoopAttempts++;
+                }
+                newSurname = parts.join('');
+                attempts++;
+            } while (
+                (newSurname.length === 0 || currentSyllables < 2 || currentSyllables > 4 || generatedSurnames.has(newSurname))
+                && attempts < maxAttempts
+            );
+
+            if (attempts >= maxAttempts) {
+                console.warn("ถึงจำนวนครั้งที่พยายามสูงสุดในการสร้างนามสกุลแล้ว จะใช้ค่าสำรองแทน");
+                newSurname = "สมบูรณ์สุข";
+            }
+            generatedSurnames.add(newSurname);
+            return `${randomName} ${newSurname}`;
+        }
+
+        document.getElementById('randomNameSurnameBtn').addEventListener('click', () => {
+            document.getElementById('nameSurnameDisplay').textContent = generateThaiNameSurname();
+        });
+
+        document.getElementById('copyNameSurnameBtn').addEventListener('click', () => {
+            copyToClipboard(document.getElementById('nameSurnameDisplay').textContent);
+        });
+
+        // --- ส่วนบันทึกไฟล์ ---
+        document.getElementById('saveFileBtn').addEventListener('click', () => {
+            const username = document.getElementById('usernameDisplay').textContent;
+            const phoneNumber = document.getElementById('phoneDisplay').textContent;
+            const nameSurname = document.getElementById('nameSurnameDisplay').textContent;
+
+            // ตรวจสอบว่ามีการสุ่มข้อมูลแล้วหรือยัง
+            if (username === 'กด "สุ่ม" เพื่อสร้าง' || phoneNumber === 'กด "สุ่ม" เพื่อสร้าง' || nameSurname === 'กด "สุ่ม" เพื่อสร้าง') {
+                showMessage('กรุณาสุ่มข้อมูลก่อนบันทึกค่ะ!', 'error'); // เปลี่ยนเป็นแจ้งเตือน error สีแดง
+                return; // หยุดการทำงานถ้ายังไม่มีข้อมูล
+            }
+
+            // สร้างเนื้อหาสำหรับไฟล์ .txt ตามรูปแบบที่ต้องการ พร้อมเว้นวรรค 1 บรรทัด
+            const fileContent = `ยูสเซอร์ : ${username}\n\nเบอร์ : ${phoneNumber}\n\nชื่อ : ${nameSurname}`;
+            const filename = `${username}.txt`; // ชื่อไฟล์เป็นยูสเซอร์เนมปัจจุบัน
+
+            // สร้าง Blob (Binary Large Object) จากเนื้อหา
+            const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+
+            // สร้าง URL ชั่วคราวสำหรับ Blob
+            const url = URL.createObjectURL(blob);
+
+            // สร้าง Element <a> ชั่วคราวเพื่อใช้ในการดาวน์โหลด
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename; // กำหนดชื่อไฟล์ที่จะดาวน์โหลด
+            document.body.appendChild(a); // เพิ่ม Element <a> เข้าไปใน body (จำเป็นสำหรับบางเบราว์เซอร์)
+            a.click(); // คลิก Element <a> เพื่อเริ่มการดาวน์โหลด
+            document.body.removeChild(a); // ลบ Element <a> ออกจาก body
+
+            // *** การแก้ไข: เพิ่ม setTimeout เพื่อหน่วงเวลาการเรียก URL.revokeObjectURL ***
+            // เพื่อให้เบราว์เซอร์มีเวลาประมวลผลการดาวน์โหลดก่อนที่จะปล่อยทรัพยากร
+            setTimeout(() => {
+                URL.revokeObjectURL(url); // ปล่อยทรัพยากร URL ชั่วคราว
+            }, 100); // หน่วงเวลา 100 มิลลิวินาที
+            showMessage('บันทึกไฟล์เรียบร้อยแล้วค่ะ!');
+        });
     </script>
 </body>
 </html>
+
+
