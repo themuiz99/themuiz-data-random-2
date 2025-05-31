@@ -30,15 +30,17 @@
             font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับชื่อเว็บ */
             font-size: 4.5vh; /* ขนาดตัวอักษรปรับตามความสูงหน้าจอ */
             font-weight: 700; /* ตัวหนา */
-            color: #FF69B4; /* สีชมพูสดใส */
+            color: #FFFFFF; /* เปลี่ยนเป็นสีขาว */
             margin-bottom: 1.5vh; /* ระยะห่างจากด้านล่างปรับตามความสูงหน้าจอ */
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ดูมีมิติ */
             text-align: center; /* จัดให้อยู่กึ่งกลาง */
             line-height: 1.2;
-            white-space: nowrap;
-            max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            /* ลบ white-space: nowrap; และ overflow: hidden; เพื่อให้ข้อความสามารถขึ้นบรรทัดใหม่ได้ถ้าจำเป็น */
+            /* เพิ่ม text-shadow เพื่อสร้างความฟุ้งรอบขอบ */
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.7), /* เงาสีขาวฟุ้งๆ */
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(255, 255, 255, 0.3),
+                2px 2px 4px rgba(0, 0, 0, 0.2); /* เงาเดิมเพื่อความมีมิติ */
         }
         .container {
             width: 100%;
