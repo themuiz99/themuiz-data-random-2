@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Themuiz | Data Random (เวอร์ชันน่ารัก)</title>
+    <title>Themuiz | Data Random (เวอร์ชันพอดีจอ)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,14 +24,14 @@
             justify-content: space-between; /* กระจายพื้นที่เพื่อให้ Header และ Footer อยู่ด้านบน/ล่างสุด */
             align-items: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
             height: 100vh; /* กำหนดให้ Body สูงเท่า Viewport พอดี */
-            padding: 0.5rem; /* เพิ่ม Padding รอบๆ */
+            padding: 0.5vh; /* ปรับ padding เป็น vh เพื่อให้สัมพันธ์กับความสูงหน้าจอ */
         }
         .header-title {
             font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับชื่อเว็บ */
-            font-size: 2.5rem; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            font-size: 4.5vh; /* ขนาดตัวอักษรปรับตามความสูงหน้าจอ */
             font-weight: 700; /* ตัวหนา */
             color: #FF69B4; /* สีชมพูสดใส */
-            margin-bottom: 1.5rem; /* ระยะห่างจากด้านล่าง */
+            margin-bottom: 1.5vh; /* ระยะห่างจากด้านล่างปรับตามความสูงหน้าจอ */
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ดูมีมิติ */
             text-align: center; /* จัดให้อยู่กึ่งกลาง */
             line-height: 1.2;
@@ -45,24 +45,23 @@
             max-width: 900px; /* กำหนดความกว้างสูงสุดสำหรับหน้าจอใหญ่ */
             flex-grow: 1; /* ให้ Container ขยายเต็มพื้นที่ที่เหลืออยู่ระหว่าง Header และ Footer (ปุ่มบันทึก) */
             display: grid;
-            gap: 1.5rem; /* ระยะห่างระหว่าง Card */
+            gap: 1.5vh; /* ระยะห่างระหว่าง Card ปรับตามความสูงหน้าจอ */
             /* Responsive grid layout */
             grid-template-columns: 1fr; /* คอลัมน์เดียวสำหรับหน้าจอเล็ก */
             align-items: center; /* จัด Card ให้อยู่ตรงกลางแนวตั้งภายใน Grid */
             justify-content: center; /* จัด Card ให้อยู่ตรงกลางแนวนอนภายใน Grid */
-            overflow-y: auto; /* อนุญาตให้ Scroll ภายใน Container ถ้าเนื้อหาเกิน */
-            padding: 1rem; /* Padding ภายใน Container */
+            overflow-y: hidden; /* ซ่อน Scrollbar ของ Container */
+            padding: 1vh; /* Padding ภายใน Container ปรับตามความสูงหน้าจอ */
         }
         @media (min-width: 768px) { /* สำหรับหน้าจอขนาดกลางขึ้นไป */
             .container {
                 grid-template-columns: repeat(3, 1fr); /* สามคอลัมน์ */
-                overflow-y: hidden; /* ซ่อน Scrollbar เมื่อมี 3 คอลัมน์ */
             }
         }
         .card {
             background-color: rgba(255, 255, 255, 0.8); /* สีขาวโปร่งแสง */
-            border-radius: 1.5rem; /* ขอบโค้งมนมากขึ้น */
-            padding: 1.5rem; /* Padding ภายใน Card */
+            border-radius: 1.5vh; /* ขอบโค้งมนปรับตามความสูงหน้าจอ */
+            padding: 1.5vh; /* Padding ภายใน Card ปรับตามความสูงหน้าจอ */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* เงาที่ชัดเจนขึ้น */
             display: flex;
             flex-direction: column;
@@ -70,7 +69,7 @@
             justify-content: space-between; /* กระจายพื้นที่ให้เท่ากัน */
             text-align: center;
             flex-grow: 1;
-            min-height: 0;
+            min-height: 0; /* อนุญาตให้ Card หดได้ถ้าจำเป็น */
             border: 2px solid #FFC0CB; /* ขอบสีชมพูอ่อน */
             transition: transform 0.3s ease-in-out; /* เพิ่ม Transition เมื่อ hover */
         }
@@ -79,13 +78,13 @@
         }
         .card h2 {
             font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับหัวข้อ Card */
-            font-size: 1.8rem; /* ขนาดหัวข้อ */
+            font-size: 3vh; /* ขนาดหัวข้อปรับตามความสูงหน้าจอ */
             font-weight: 700;
             color: #8A2BE2; /* สีม่วงน้ำเงิน */
-            margin-bottom: 1rem;
+            margin-bottom: 1vh; /* ปรับ margin-bottom */
             display: flex; /* จัดให้ไอคอนและข้อความอยู่บรรทัดเดียวกัน */
             align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
-            gap: 0.5rem; /* ระยะห่างระหว่างไอคอนกับข้อความ */
+            gap: 0.5vh; /* ระยะห่างระหว่างไอคอนกับข้อความ */
         }
         .card h2 i {
             color: #FF69B4; /* สีไอคอนชมพูสดใส */
@@ -93,11 +92,11 @@
         .result-display {
             background-color: #F0F8FF; /* สีฟ้าอ่อนมากสำหรับพื้นที่แสดงผล */
             color: #4B0082; /* สีข้อความม่วงเข้ม */
-            padding: 0.8rem 1.2rem; /* Padding ของ display area */
-            border-radius: 1rem; /* ขอบโค้งมน */
-            margin-bottom: 1rem;
+            padding: 1vh 1.5vh; /* Padding ของ display area ปรับตามความสูงหน้าจอ */
+            border-radius: 1vh; /* ขอบโค้งมนปรับตามความสูงหน้าจอ */
+            margin-bottom: 1vh; /* ปรับ margin-bottom */
             width: 100%;
-            font-size: 1.2rem; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            font-size: 2.2vh; /* ขนาดตัวอักษรปรับตามความสูงหน้าจอ */
             font-weight: 600;
             word-break: break-all; /* ตัดคำยาวๆ */
             border: 1px solid #B0E0E6; /* ขอบสีฟ้าอ่อน */
@@ -105,18 +104,18 @@
         }
         .button-group {
             display: flex;
-            gap: 0.8rem; /* ระยะห่างระหว่างปุ่ม */
+            gap: 1vh; /* ระยะห่างระหว่างปุ่มปรับตามความสูงหน้าจอ */
             width: 100%;
             justify-content: center;
         }
         .btn {
-            padding: 0.7rem 1.5rem; /* Padding ของปุ่ม */
-            border-radius: 1rem; /* ขอบโค้งมน */
+            padding: 1vh 2vh; /* Padding ของปุ่มปรับตามความสูงหน้าจอ */
+            border-radius: 1vh; /* ขอบโค้งมนปรับตามความสูงหน้าจอ */
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease-in-out; /* เพิ่ม Transition */
             flex: 1; /* ทำให้ปุ่มมีขนาดเท่ากัน */
-            font-size: 1rem; /* ขนาดตัวอักษรของปุ่ม */
+            font-size: 2vh; /* ขนาดตัวอักษรของปุ่มปรับตามความสูงหน้าจอ */
             border: none; /* ไม่มีขอบ */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้ปุ่ม */
         }
@@ -141,11 +140,11 @@
         .btn-save {
             background-color: #98FB98; /* สีเขียวมิ้นท์สำหรับปุ่มบันทึก */
             color: #4B0082; /* สีม่วงเข้ม */
-            padding: 0.8rem 2rem; /* ขนาดปุ่มบันทึก */
-            font-size: 1.1rem; /* ขนาดตัวอักษร */
-            margin-top: 1.5rem; /* ระยะห่างจากด้านบน */
+            padding: 1.5vh 3vh; /* ขนาดปุ่มบันทึกปรับตามความสูงหน้าจอ */
+            font-size: 2.5vh; /* ขนาดตัวอักษรปรับตามความสูงหน้าจอ */
+            margin-top: 1.5vh; /* ระยะห่างจากด้านบนปรับตามความสูงหน้าจอ */
             width: auto; /* ให้ปุ่มปรับขนาดตามเนื้อหา */
-            border-radius: 1.5rem; /* ขอบโค้งมนมากขึ้น */
+            border-radius: 1.5vh; /* ขอบโค้งมนมากขึ้นปรับตามความสูงหน้าจอ */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
         }
@@ -156,27 +155,27 @@
         }
         .footer-credit {
             font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับเครดิต */
-            font-size: 0.9rem; /* ขนาดตัวอักษรสำหรับเครดิต */
+            font-size: 1.8vh; /* ขนาดตัวอักษรสำหรับเครดิตปรับตามความสูงหน้าจอ */
             color: #6A5ACD; /* สีม่วงอ่อน */
-            margin-top: 1.5rem;
+            margin-top: 1.5vh; /* ปรับ margin-top */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
         .message-box {
             position: fixed;
-            bottom: 1rem; /* ปรับให้อยู่ด้านล่างสุด */
+            bottom: 1vh; /* ปรับให้อยู่ด้านล่างสุด */
             left: 50%;
             transform: translateX(-50%);
             /* สีเริ่มต้นสำหรับข้อความสำเร็จ */
             background-color: #98FB98; /* Green for success */
             color: #4B0082;
-            padding: 0.8rem 1.5rem; /* Padding */
-            border-radius: 1.5rem; /* ขอบโค้งมน */
+            padding: 1vh 2vh; /* Padding ปรับตามความสูงหน้าจอ */
+            border-radius: 1.5vh; /* ขอบโค้งมนปรับตามความสูงหน้าจอ */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
             z-index: 1000;
             white-space: nowrap; /* ป้องกันข้อความแจ้งเตือนขึ้นบรรทัดใหม่ */
-            font-size: 1rem; /* ขนาดตัวอักษร */
+            font-size: 2vh; /* ขนาดตัวอักษรปรับตามความสูงหน้าจอ */
             border: 1px solid #3CB371; /* ขอบสีเขียว */
         }
         .message-box.show {
@@ -486,5 +485,4 @@
     </script>
 </body>
 </html>
-
 
