@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themuiz | Data Random</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- เพิ่ม Font Awesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- เพิ่มฟอนต์น่ารักๆ -->
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Itim&family=Charmonman:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ธีมสีพาสเทลน่ารัก */
+        :root {
+            --primary: #A78BFA; /* สีม่วงอ่อน */
+            --secondary: #F9A8D4; /* สีชมพู */
+            --accent: #67E8F9; /* สีฟ้าอ่อน */
+            --background: #F5F3FF; /* สีพื้นหลัง */
+            --card: #FFFFFF; /* สีการ์ด */
+            --text: #4B5563; /* สีข้อความ */
+        }
+
+        body {
+            font-family: 'Itim', cursive; /* ฟอนต์น่ารัก */
+            background-color: var(--background);
+            color: var(--text);
+            background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .header-title {
+            font-family: 'Charmonman', cursive; /* ฟอนต์หัวข้อน่ารัก */
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .header-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .container {
+            gap: 1.2rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(167, 139, 250, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .card h2 {
+            font-family: 'Mali', cursive;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .result-display {
+            background-color: rgba(167, 139, 250, 0.1);
+            color: var(--text);
+            border: 1px dashed var(--primary);
+            font-family: 'Itim', cursive;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            font-family: 'Itim', cursive;
+            border-radius: 0.7rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-save {
+            background-color: var(--accent);
+            color: #333;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-credit {
+            font-family: 'Charmonman', cursive;
+            color: var(--primary);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .message-box {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 0.6rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-family: 'Itim', cursive;
+        }
+
+        /* เพิ่มการตกแต่งไอคอน */
+        .icon {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+
+        /* เพิ่มลูกเล่นให้ปุ่ม */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .btn:hover {
+            animation: bounce 0.5s;
+        }
+
+        /* เพิ่มลูกเล่นให้การ์ด */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .card:hover {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-title">
+        <i class="fas fa-magic icon"></i> Themuiz | Data Random
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-user icon"></i> สุ่มยูสเซอร์เนม</h2>
+            <div id="usernameDisplay" class="result-display">กด "สุ่ม" เพื่อสร้าง</div>
+            <div class="button-group">
+                <button id="randomUsernameBtn" class="btn btn-primary">
+                    <i class="fas fa-random icon"></i> สุ่ม
+                </button>
+                <button id="copyUsernameBtn" class="btn btn-secondary">
+                    <i class="far fa-copy icon"></i> คัดลอก
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-phone icon"></i> สุ่มเบอร์โทร</h2>
+            <div id="phoneDisplay" class="result-display">กด "สุ่ม" เพื่อสร้าง</div>
+            <div class="button-group">
+                <button id="randomPhoneBtn" class="btn btn-primary">
+                    <i class="fas fa-random icon"></i> สุ่ม
+                </button>
+                <button id="copyPhoneBtn" class="btn btn-secondary">
+                    <i class="far fa-copy icon"></i> คัดลอก
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-id-card icon"></i> สุ่มชื่อ-นามสกุล</h2>
+            <div id="nameSurnameDisplay" class="result-display">กด "สุ่ม" เพื่อสร้าง</div>
+            <div class="button-group">
+                <button id="randomNameSurnameBtn" class="btn btn-primary">
+                    <i class="fas fa-random icon"></i> สุ่ม
+                </button>
+                <button id="copyNameSurnameBtn" class="btn btn-secondary">
+                    <i class="far fa-copy icon"></i> คัดลอก
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full flex justify-center">
+        <button id="saveFileBtn" class="btn btn-save">
+            <i class="fas fa-save icon"></i> บันทึกรายการ
+        </button>
+    </div>
+
+    <div class="footer-credit">
+        <i class="fas fa-heart icon" style="color: #F9A8D4;"></i> Themuiz × มะลิ
+    </div>
+
+    <div id="messageBox" class="message-box"></div>
+
+    <!-- ส่วน JavaScript เดิมไม่เปลี่ยนแปลง -->
+    <script>
+        // ... ส่วน JavaScript เดิมทั้งหมด ...
+    </script>
+</body>
+</html>
