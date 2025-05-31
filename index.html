@@ -30,11 +30,13 @@
             font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali สำหรับชื่อเว็บ */
             font-size: 4.5vh; /* ขนาดตัวอักษรปรับตามความสูงหน้าจอ */
             font-weight: 700; /* ตัวหนา */
-            color: #FFFFFF; /* เปลี่ยนเป็นสีขาว */
+            color: #000000; /* เปลี่ยนเป็นสีดำ */
             margin-bottom: 1.5vh; /* ระยะห่างจากด้านล่างปรับตามความสูงหน้าจอ */
             text-align: center; /* จัดให้อยู่กึ่งกลาง */
             line-height: 1.2;
-            /* ลบ white-space: nowrap; และ overflow: hidden; เพื่อให้ข้อความสามารถขึ้นบรรทัดใหม่ได้ถ้าจำเป็น */
+            white-space: nowrap; /* ทำให้ข้อความอยู่ในบรรทัดเดียว */
+            overflow: hidden; /* ซ่อนส่วนที่เกิน */
+            text-overflow: ellipsis; /* แสดง ... ถ้าข้อความยาวเกิน */
             /* เพิ่ม text-shadow เพื่อสร้างความฟุ้งรอบขอบ */
             text-shadow: 
                 0 0 5px rgba(255, 255, 255, 0.7), /* เงาสีขาวฟุ้งๆ */
